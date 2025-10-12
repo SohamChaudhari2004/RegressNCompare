@@ -1,6 +1,7 @@
 # 📖 Usage Examples & Tutorials
 
 ## Table of Contents
+
 1. [Basic Usage](#basic-usage)
 2. [Working with Built-in Datasets](#working-with-built-in-datasets)
 3. [Uploading Custom CSV Files](#uploading-custom-csv-files)
@@ -17,6 +18,7 @@
 **Objective**: Train all models on California Housing dataset and compare results.
 
 **Steps**:
+
 1. Run the app: `streamlit run app.py`
 2. Default dataset (California Housing) is already selected
 3. Navigate to **Tab 2: Training & Evaluation**
@@ -25,11 +27,13 @@
 6. View results in the metrics table
 
 **Expected Results**:
+
 - R² scores around 0.75-0.85
 - HistGradientBoosting typically performs best
 - Training completes in under 30 seconds
 
 **What You'll Learn**:
+
 - How to train multiple models simultaneously
 - Which model performs best on housing data
 - Feature importance (square footage, location, etc.)
@@ -41,6 +45,7 @@
 **Objective**: Learn how HistGradientBoostingRegressor works.
 
 **Steps**:
+
 1. Go to **Tab 1: Model Explanation & Visualization**
 2. Expand **"🔍 What is HistGradientBoostingRegressor?"**
 3. Read about histogram binning and gradient boosting
@@ -50,6 +55,7 @@
 7. Study the boosting process diagram
 
 **What You'll Learn**:
+
 - Histogram binning concept (255 bins vs 1000s of split points)
 - Sequential tree building process
 - Native missing value handling
@@ -64,6 +70,7 @@
 **Objective**: Analyze the Diabetes dataset and identify important features.
 
 **Steps**:
+
 1. In sidebar, select **"Diabetes"** from dataset dropdown
 2. Note: Target column is automatically set to "target"
 3. Go to **Tab 2: Training & Evaluation**
@@ -74,11 +81,13 @@
 8. Check which features are most predictive
 
 **Expected Results**:
+
 - R² scores around 0.40-0.55 (this is a harder problem)
 - Features like BMI, blood pressure may rank high
 - Smaller dataset trains very quickly (<5 seconds)
 
 **Insights**:
+
 - Medical data is often harder to predict (lower R²)
 - Some models may show overfitting on small datasets
 - Feature importance reveals biological markers
@@ -90,6 +99,7 @@
 **Objective**: Systematically compare model performances.
 
 **Steps**:
+
 1. Use California Housing dataset
 2. Ensure all models are selected (HistGradientBoosting, LinearRegression, RandomForest, XGBoost)
 3. Train all models
@@ -99,12 +109,14 @@
 7. Check the "Overfit Gap" column
 
 **What to Look For**:
+
 - **Best R² Score**: Which model predicts best?
 - **Lowest RMSE**: Which has smallest errors?
 - **Overfit Gap**: Which generalizes best?
 - **Speed**: Which trained fastest?
 
 **Typical Rankings** (California Housing):
+
 1. HistGradientBoosting: R² ~0.83
 2. XGBoost: R² ~0.82
 3. RandomForest: R² ~0.80
@@ -119,6 +131,7 @@
 **Objective**: Upload and analyze the provided sample_data.csv.
 
 **Steps**:
+
 1. In sidebar, select **"Upload CSV"**
 2. Click **"Browse files"**
 3. Select `sample_data.csv`
@@ -129,11 +142,13 @@
 8. View results
 
 **Expected Results**:
+
 - Very high R² scores (0.95+) - this is synthetic data
 - Education level and income likely most important
 - Categorical feature (education_level) is automatically encoded
 
 **What You'll Learn**:
+
 - How to upload your own data
 - Automatic categorical encoding
 - Feature importance with mixed data types
@@ -145,6 +160,7 @@
 **Objective**: Prepare and upload a custom CSV for analysis.
 
 **Your CSV Requirements**:
+
 ```csv
 feature1,feature2,feature3,target
 10,20,A,100
@@ -153,6 +169,7 @@ feature1,feature2,feature3,target
 ```
 
 **Format Guidelines**:
+
 - ✅ First row must be column names (headers)
 - ✅ At least 2 columns (1 feature + 1 target)
 - ✅ Can include numerical and categorical columns
@@ -160,12 +177,14 @@ feature1,feature2,feature3,target
 - ✅ No index column needed
 
 **Steps**:
+
 1. Create CSV file with proper format
 2. Upload through sidebar
 3. Select target column
 4. Train models
 
 **Common Issues**:
+
 - ❌ No headers: Add column names in first row
 - ❌ Too few samples: Need at least 20 rows for meaningful results
 - ❌ All categorical: Need at least one numerical feature
@@ -180,11 +199,13 @@ feature1,feature2,feature3,target
 **Visualization**: Horizontal bar chart showing top features.
 
 **How to Read**:
+
 - **Longer bars** = More important features
 - **Top features** = Most influential on predictions
 - **Zero importance** = Feature not used by model
 
 **Example Interpretation** (California Housing):
+
 ```
 MedInc (Median Income)         |████████████████| 0.52
 Latitude                       |████████|         0.28
@@ -194,11 +215,13 @@ AveRooms (Avg Rooms)          |███|              0.05
 ```
 
 **What This Means**:
+
 - Income explains 52% of price variation
 - Location (lat/long) adds 40% more explanation
 - Other features have minor impact
 
 **Actions**:
+
 - Focus data collection on important features
 - Consider removing unimportant features
 - Investigate why certain features matter
@@ -210,6 +233,7 @@ AveRooms (Avg Rooms)          |███|              0.05
 **Visualization**: Scatter plot with red diagonal line.
 
 **How to Read**:
+
 - **Red line**: Perfect predictions (y = x)
 - **Points near line**: Good predictions
 - **Points above line**: Overpredicted (predicted > actual)
@@ -219,6 +243,7 @@ AveRooms (Avg Rooms)          |███|              0.05
 **Example Scenarios**:
 
 **Scenario A - Good Model**:
+
 ```
 Points clustered around red line
 R² = 0.85
@@ -226,6 +251,7 @@ R² = 0.85
 ```
 
 **Scenario B - Systematic Bias**:
+
 ```
 Points systematically below line at high values
 R² = 0.70
@@ -233,6 +259,7 @@ R² = 0.70
 ```
 
 **Scenario C - High Variance**:
+
 ```
 Points widely scattered around line
 R² = 0.45
@@ -246,6 +273,7 @@ R² = 0.45
 **Visualization**: Scatter plot of predictions vs errors.
 
 **How to Read**:
+
 - **Y-axis**: Residuals (Actual - Predicted)
 - **X-axis**: Predicted values
 - **Zero line**: Perfect predictions
@@ -255,6 +283,7 @@ R² = 0.45
 **Pattern Analysis**:
 
 **Pattern 1 - Random Scatter** ✅
+
 ```
 Points randomly distributed around zero
 → Model assumptions are met
@@ -262,6 +291,7 @@ Points randomly distributed around zero
 ```
 
 **Pattern 2 - Funnel Shape** ⚠️
+
 ```
 Spread increases with predicted value
 → Heteroscedasticity (non-constant variance)
@@ -269,6 +299,7 @@ Spread increases with predicted value
 ```
 
 **Pattern 3 - Curved Pattern** ❌
+
 ```
 Residuals form a curve
 → Non-linear relationship not captured
@@ -276,6 +307,7 @@ Residuals form a curve
 ```
 
 **Pattern 4 - Outliers** ⚠️
+
 ```
 Most points near zero, few far away
 → Outliers in data
@@ -289,11 +321,13 @@ Most points near zero, few far away
 **Visualization**: Line plots showing feature effects.
 
 **How to Read**:
+
 - **X-axis**: Feature values
 - **Y-axis**: Predicted target (holding other features constant)
 - **Slope**: Direction and strength of relationship
 
 **Example Interpretation** (Income vs House Price):
+
 ```
 Graph shows upward trend
 Steep slope at low income, flatter at high income
@@ -302,6 +336,7 @@ Steep slope at low income, flatter at high income
 ```
 
 **Use Cases**:
+
 - Understand feature-target relationships
 - Identify non-linear patterns
 - Detect threshold effects
@@ -316,26 +351,30 @@ Steep slope at low income, flatter at high income
 **Metrics Guide**:
 
 **R² Score** (0 to 1, higher is better):
+
 - **0.9+**: Excellent - Model captures 90%+ of variance
 - **0.7-0.9**: Good - Solid predictive performance
 - **0.5-0.7**: Moderate - Useful but room for improvement
 - **<0.5**: Poor - Consider different approach
 
 **RMSE** (lower is better):
+
 - Same units as target variable
 - Penalizes large errors heavily
 - Compare to target's standard deviation
-  - RMSE < 0.5 * std: Excellent
+  - RMSE < 0.5 \* std: Excellent
   - RMSE < std: Good
   - RMSE > std: Poor
 
 **MAE** (lower is better):
+
 - Average absolute error
 - More robust to outliers than RMSE
 - Easier to interpret than RMSE
 - If MAE << RMSE: Outliers present
 
 **Overfitting Gap** (train R² - test R²):
+
 - **<0.05**: Well-generalized ✅
 - **0.05-0.10**: Moderate overfitting ⚠️
 - **>0.10**: Significant overfitting ❌
@@ -347,16 +386,20 @@ Steep slope at low income, flatter at high income
 **Problem**: R² = 0.30 on test set
 
 **Diagnosis Steps**:
+
 1. Check overfitting gap
+
    - Gap > 0.10? → Overfitting
    - Gap < 0.05? → Underfitting
 
 2. For **Underfitting**:
+
    - Try more complex model
    - Add feature engineering
    - Check data quality
 
 3. For **Overfitting**:
+
    - Reduce model complexity
    - Add regularization
    - Get more training data
@@ -399,18 +442,21 @@ Steep slope at low income, flatter at high income
 **Trade-offs**:
 
 **Large Test Set (30-40%)**:
+
 - ✅ More reliable performance estimates
 - ✅ Better detection of overfitting
 - ❌ Less data for training
 - ❌ Potentially worse model
 
 **Small Test Set (10-20%)**:
+
 - ✅ More data for training
 - ✅ Better model performance
 - ❌ Less reliable test metrics
 - ❌ Overfitting harder to detect
 
 **Recommendation**:
+
 - **Large datasets** (>10K): 10-20% test
 - **Medium datasets** (1K-10K): 20-30% test
 - **Small datasets** (<1K): 30-40% test or use cross-validation
@@ -422,21 +468,25 @@ Steep slope at low income, flatter at high income
 **Based on Feature Importance Results**:
 
 **If location features are important**:
+
 - Create distance features (to city center, amenities)
 - Cluster locations into neighborhoods
 - Add interaction: location × income
 
 **If time features exist**:
+
 - Extract cyclical features (month, day of week)
 - Create time since event
 - Add seasonal indicators
 
 **If continuous features are important**:
+
 - Try polynomial features (x²)
 - Create binned versions
 - Add ratio features (income/age)
 
 **If categorical features have low importance**:
+
 - Try different encoding (target encoding)
 - Combine rare categories
 - Create interaction with numerical features
@@ -448,24 +498,28 @@ Steep slope at low income, flatter at high income
 **Checklist**:
 
 1. **Data Quality**:
+
    - [ ] Remove duplicates
    - [ ] Handle outliers
    - [ ] Fix data entry errors
    - [ ] Validate feature distributions
 
 2. **Feature Engineering**:
+
    - [ ] Create interaction features
    - [ ] Transform skewed features (log)
    - [ ] Encode categoricals differently
    - [ ] Add domain knowledge features
 
 3. **Model Tuning**:
+
    - [ ] Adjust learning_rate
    - [ ] Change max_depth
    - [ ] Modify min_samples_leaf
    - [ ] Tune max_iter
 
 4. **Ensemble Methods**:
+
    - [ ] Average predictions from top models
    - [ ] Use weighted average by R²
    - [ ] Stack models
@@ -480,6 +534,7 @@ Steep slope at low income, flatter at high income
 ### Example 17: Downloading and Using Trained Models
 
 **Steps to Download**:
+
 1. Navigate to **Tab 3: Model Comparison & Insights**
 2. Scroll to **"💾 Download Results"** section
 3. Click **"💾 Save Best Model"**
@@ -507,6 +562,7 @@ print(predictions)
 ```
 
 **Important Notes**:
+
 - Model includes preprocessing pipeline
 - New data must have same features as training data
 - Categorical features must use same categories
@@ -528,6 +584,7 @@ print(predictions)
 3. **Compare across datasets**: Analyze which models work best for different data types
 
 **Automation Idea** (outside app):
+
 ```python
 # Pseudo-code for batch processing
 for csv_file in dataset_folder:
@@ -556,6 +613,7 @@ for csv_file in dataset_folder:
 ## 📚 Further Learning
 
 **After mastering these examples**:
+
 1. Study hyperparameter tuning (GridSearchCV)
 2. Learn about cross-validation
 3. Explore SHAP values for advanced interpretability

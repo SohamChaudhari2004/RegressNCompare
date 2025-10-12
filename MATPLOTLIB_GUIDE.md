@@ -5,12 +5,14 @@
 ### Library Information
 
 **Matplotlib** (`matplotlib.pyplot as plt`)
+
 - Core plotting library for Python
 - Highly customizable
 - Industry standard for scientific visualization
 - Version: 3.7.0+
 
 **Seaborn** (`seaborn as sns`)
+
 - Built on top of matplotlib
 - Statistical data visualization
 - Beautiful default styles
@@ -24,7 +26,8 @@
 
 **Function**: `plot_comparison(results)`
 
-**Output**: 
+**Output**:
+
 - 4 subplots in 2x2 grid
 - Top-left: R² Score (blue bars)
 - Top-right: MSE (coral bars)
@@ -32,12 +35,14 @@
 - Bottom-right: RMSE (gold bars)
 
 **Features**:
+
 - Seaborn whitegrid style
 - Rotated x-axis labels (45°)
 - Grid lines for easy reading
 - Alpha transparency (0.7)
 
 **Customization Options**:
+
 ```python
 # Change style
 sns.set_style("darkgrid")  # or "whitegrid", "dark", "white", "ticks"
@@ -56,17 +61,20 @@ fig, axes = plt.subplots(2, 2, figsize=(16, 12))
 **Function**: `plot_feature_importance(importance_df, top_n=10)`
 
 **Output**:
+
 - Horizontal bar chart
 - Sorted by importance (descending)
 - Shows top N features
 - Steelblue color
 
 **Features**:
+
 - Uses seaborn barplot
 - Grid lines on x-axis
 - Clean, professional look
 
 **Customization Options**:
+
 ```python
 # Change color
 sns.barplot(data=plot_df, y='Feature', x='Importance', color='coral', ax=ax)
@@ -85,18 +93,21 @@ sns.barplot(data=plot_df, y='Feature', x='Importance', palette='viridis', ax=ax)
 **Function**: `plot_predictions(y_true, y_pred, title)`
 
 **Output**:
+
 - Scatter plot of actual vs predicted values
 - Red dashed line for perfect predictions
 - R² score in title
 - Grid for reference
 
 **Features**:
+
 - Alpha transparency (0.6)
 - Navy edge colors
 - Legend showing perfect prediction line
 - Square aspect ratio (8x8)
 
 **Customization Options**:
+
 ```python
 # Change marker style
 ax.scatter(y_true, y_pred, alpha=0.6, s=30, marker='o', color='steelblue')
@@ -117,18 +128,21 @@ ax.plot(y_true, slope * y_true + intercept, 'g--', label='Regression Line')
 **Function**: `plot_residuals(y_true, y_pred)`
 
 **Output**:
+
 - Scatter plot of residuals vs predicted values
 - Red dashed line at y=0
 - Coral colored points
 - Dark red edges
 
 **Features**:
+
 - Shows error distribution
 - Zero reference line
 - Grid for analysis
 - Legend
 
 **Customization Options**:
+
 ```python
 # Add histogram on side
 from matplotlib.gridspec import GridSpec
@@ -150,18 +164,21 @@ ax.scatter(y_pred, residuals, c=colors, alpha=0.6)
 **Function**: `plot_partial_dependence(pipeline, X_train, feature_names, features_to_plot)`
 
 **Output**:
+
 - 1-2 line plots side by side
 - Shows marginal effect of features
 - Steelblue lines
 - Grid for reference
 
 **Features**:
+
 - Subplots for multiple features
 - Bold titles
 - Clean line plots
 - Tight layout
 
 **Customization Options**:
+
 ```python
 # Add confidence intervals
 from sklearn.inspection import partial_dependence
@@ -182,6 +199,7 @@ axes[idx].plot(x, y, linewidth=2, color='steelblue', marker='o')
 ### Global Style Settings
 
 **Set Once at App Start**:
+
 ```python
 # In app.py after imports
 import matplotlib.pyplot as plt
@@ -282,6 +300,7 @@ fig.savefig('plot.png', dpi=300, bbox_inches='tight', transparent=True)
 ### Issue: Plots Not Displaying
 
 **Solution**:
+
 ```python
 # Ensure figure is returned
 return fig
@@ -296,6 +315,7 @@ plt.close(fig)
 ### Issue: Text Overlapping
 
 **Solution**:
+
 ```python
 # Use tight_layout
 plt.tight_layout()
@@ -310,6 +330,7 @@ ax.tick_params(axis='x', rotation=45)
 ### Issue: Legend Covering Data
 
 **Solution**:
+
 ```python
 # Move legend
 ax.legend(loc='best')           # Auto position
@@ -320,6 +341,7 @@ ax.legend(bbox_to_anchor=(1.05, 1))  # Outside plot
 ### Issue: Colors Don't Match
 
 **Solution**:
+
 ```python
 # Use exact color codes
 colors = {
@@ -420,37 +442,40 @@ sns.violinplot(data=df, ax=ax)
 
 ## Quick Reference Table
 
-| Task | Code |
-|------|------|
-| Create figure | `fig, ax = plt.subplots()` |
-| Bar chart | `ax.bar(x, y)` |
-| Scatter plot | `ax.scatter(x, y)` |
-| Line plot | `ax.plot(x, y)` |
-| Horizontal line | `ax.axhline(y=0)` |
-| Vertical line | `ax.axvline(x=0)` |
-| Set title | `ax.set_title('Title')` |
-| Set labels | `ax.set_xlabel('X')`, `ax.set_ylabel('Y')` |
-| Add legend | `ax.legend()` |
-| Add grid | `ax.grid(True)` |
-| Save figure | `fig.savefig('file.png')` |
-| Display in Streamlit | `st.pyplot(fig)` |
-| Close figure | `plt.close(fig)` |
+| Task                 | Code                                       |
+| -------------------- | ------------------------------------------ |
+| Create figure        | `fig, ax = plt.subplots()`                 |
+| Bar chart            | `ax.bar(x, y)`                             |
+| Scatter plot         | `ax.scatter(x, y)`                         |
+| Line plot            | `ax.plot(x, y)`                            |
+| Horizontal line      | `ax.axhline(y=0)`                          |
+| Vertical line        | `ax.axvline(x=0)`                          |
+| Set title            | `ax.set_title('Title')`                    |
+| Set labels           | `ax.set_xlabel('X')`, `ax.set_ylabel('Y')` |
+| Add legend           | `ax.legend()`                              |
+| Add grid             | `ax.grid(True)`                            |
+| Save figure          | `fig.savefig('file.png')`                  |
+| Display in Streamlit | `st.pyplot(fig)`                           |
+| Close figure         | `plt.close(fig)`                           |
 
 ---
 
 ## Resources
 
 **Official Documentation**:
+
 - Matplotlib: https://matplotlib.org/stable/
 - Seaborn: https://seaborn.pydata.org/
 - Matplotlib Gallery: https://matplotlib.org/stable/gallery/index.html
 - Seaborn Examples: https://seaborn.pydata.org/examples/index.html
 
 **Tutorials**:
+
 - Matplotlib Tutorial: https://matplotlib.org/stable/tutorials/index.html
 - Seaborn Tutorial: https://seaborn.pydata.org/tutorial.html
 
 **Cheat Sheets**:
+
 - Matplotlib Cheatsheet: https://matplotlib.org/cheatsheets/
 - Seaborn Cheatsheet: https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Python_Seaborn_Cheat_Sheet.pdf
 

@@ -5,13 +5,16 @@
 ### Major Changes
 
 #### Visualization Library Update
+
 - **Replaced**: Plotly → Matplotlib + Seaborn
 - **Reason**: Simplified dependencies, better for static exports, improved compatibility
 
 ### Updated Files
 
 #### 1. requirements.txt
+
 **Changed**:
+
 ```diff
 - plotly>=5.17.0
 + matplotlib>=3.7.0
@@ -19,7 +22,9 @@
 ```
 
 #### 2. app.py
+
 **Import Changes**:
+
 ```diff
 - import plotly.graph_objects as go
 - import plotly.express as px
@@ -32,21 +37,25 @@
 **Function Updates**:
 
 1. **plot_comparison()** - Model comparison bar charts
+
    - Now uses matplotlib subplots (2x2 grid)
    - Uses seaborn style ('whitegrid')
    - Returns matplotlib Figure instead of plotly Figure
 
 2. **plot_feature_importance()** - Feature importance visualization
+
    - Uses seaborn barplot for horizontal bars
    - Maintains top N feature display
    - Returns matplotlib Figure
 
 3. **plot_predictions()** - Predicted vs Actual scatter plots
+
    - Uses matplotlib scatter plot
    - Perfect prediction line with matplotlib plot()
    - Returns matplotlib Figure
 
 4. **plot_residuals()** - Residual analysis
+
    - Uses matplotlib scatter with axhline for zero line
    - Returns matplotlib Figure
 
@@ -56,12 +65,14 @@
    - Returns matplotlib Figure
 
 **UI Display Changes**:
+
 ```diff
 - st.plotly_chart(fig, use_container_width=True)
 + st.pyplot(fig)
 ```
 
 Applied to:
+
 - Feature importance plot (line ~900)
 - Predicted vs Actual plots - train & test (lines ~919, 927)
 - Residual plot (line ~937)
@@ -69,7 +80,9 @@ Applied to:
 - Model comparison chart (line ~979)
 
 #### 3. README.md
+
 **Documentation Update**:
+
 ```diff
 ### Visualization
 - plotly: Interactive charts and graphs
@@ -78,7 +91,9 @@ Applied to:
 ```
 
 #### 4. INSTALLATION.md
+
 **Verification Commands**:
+
 ```diff
 - # Check plotly
 - python -c "import plotly; print(plotly.__version__)"
@@ -97,12 +112,14 @@ Applied to:
 #### Visual Differences
 
 **Before (Plotly)**:
+
 - Interactive charts with zoom, pan, hover tooltips
 - Web-based rendering
 - Larger file sizes
 - Automatic responsive layouts
 
 **After (Matplotlib/Seaborn)**:
+
 - Static charts with cleaner aesthetics
 - Traditional matplotlib rendering
 - Smaller file sizes
@@ -120,6 +137,7 @@ Applied to:
 ✅ Grid lines and styling maintained
 
 **What's Different**:
+
 - Charts are now static (no interactive zoom/pan)
 - Hover tooltips not available
 - Slightly different styling (seaborn whitegrid)
@@ -129,21 +147,25 @@ Applied to:
 ### Benefits of Change
 
 1. **Simpler Dependencies**
+
    - Matplotlib/Seaborn are standard Python visualization libraries
    - Smaller installation size
    - Fewer compatibility issues
 
 2. **Better Export Options**
+
    - Easy to save as PNG, PDF, SVG
    - Better for reports and presentations
    - Print-friendly
 
 3. **Faster Performance**
+
    - Quicker rendering for large datasets
    - Lower memory usage
    - Faster page loads
 
 4. **Scientific Standard**
+
    - Matplotlib is the de-facto standard in scientific Python
    - Better for academic/research use
    - More familiar to data scientists
@@ -156,11 +178,13 @@ Applied to:
 ### Installation Instructions
 
 #### New Installation
+
 ```bash
 pip install -r requirements.txt
 ```
 
 #### Updating Existing Installation
+
 ```bash
 # Uninstall old dependency
 pip uninstall plotly -y
@@ -172,12 +196,14 @@ pip install matplotlib>=3.7.0 seaborn>=0.12.0
 ### Backward Compatibility
 
 **Breaking Changes**:
+
 - Applications using plotly-specific features will need updates
 - Custom plotly configurations no longer applicable
 - Interactive features (zoom, pan, hover) removed
 
 **Migration Path**:
 If you need interactive charts:
+
 1. Keep plotly in your environment
 2. Modify plotting functions to support both libraries
 3. Add a toggle in UI to switch between static/interactive
@@ -203,6 +229,7 @@ If you need interactive charts:
 ### Future Enhancements
 
 Potential additions with matplotlib/seaborn:
+
 - [ ] Advanced seaborn themes (darkgrid, whitegrid, dark, white, ticks)
 - [ ] Custom color palettes
 - [ ] Violin plots for distribution analysis
@@ -213,15 +240,15 @@ Potential additions with matplotlib/seaborn:
 
 ### Performance Comparison
 
-| Metric | Plotly | Matplotlib/Seaborn |
-|--------|--------|-------------------|
-| Render Time (small dataset) | ~50ms | ~30ms ⚡ |
-| Render Time (large dataset) | ~200ms | ~80ms ⚡ |
-| File Size | ~500KB | ~200KB ⚡ |
-| Memory Usage | Higher | Lower ⚡ |
-| Interactivity | ✅ Full | ❌ None |
-| Export Quality | Good | Excellent ⚡ |
-| Customization | Limited | Extensive ⚡ |
+| Metric                      | Plotly  | Matplotlib/Seaborn |
+| --------------------------- | ------- | ------------------ |
+| Render Time (small dataset) | ~50ms   | ~30ms ⚡           |
+| Render Time (large dataset) | ~200ms  | ~80ms ⚡           |
+| File Size                   | ~500KB  | ~200KB ⚡          |
+| Memory Usage                | Higher  | Lower ⚡           |
+| Interactivity               | ✅ Full | ❌ None            |
+| Export Quality              | Good    | Excellent ⚡       |
+| Customization               | Limited | Extensive ⚡       |
 
 ### Usage Examples
 
@@ -254,16 +281,19 @@ plt.style.use('ggplot')
 If you encounter issues after the update:
 
 1. **Verify Installation**:
+
    ```bash
    python -c "import matplotlib, seaborn; print('OK')"
    ```
 
 2. **Check Versions**:
+
    ```bash
    pip show matplotlib seaborn
    ```
 
 3. **Reinstall if Needed**:
+
    ```bash
    pip install --upgrade --force-reinstall matplotlib seaborn
    ```
@@ -286,6 +316,7 @@ If you need to revert to Plotly:
 ## Version 1.0 - Initial Release
 
 ### Features
+
 - Complete Streamlit application
 - 4 regression models (HistGradientBoosting, LinearRegression, RandomForest, XGBoost)
 - Built-in datasets (California Housing, Diabetes)

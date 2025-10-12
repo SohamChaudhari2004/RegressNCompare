@@ -32,16 +32,19 @@ ML_mini/
 ## 🎯 Quick Navigation Guide
 
 ### For First-Time Users
+
 1. **Start Here**: [QUICKSTART.md](QUICKSTART.md)
 2. **Then Read**: [README.md](README.md)
 3. **Installation Help**: [INSTALLATION.md](INSTALLATION.md)
 
 ### For Learning
+
 1. **Usage Examples**: [USAGE_EXAMPLES.md](USAGE_EXAMPLES.md) - 18 detailed tutorials
 2. **Run the App**: `streamlit run app.py`
 3. **Explore Tab 1**: In-app model explanations
 
 ### For Developers
+
 1. **Code Structure**: [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)
 2. **Main Code**: [app.py](app.py)
 3. **Dependencies**: [requirements.txt](requirements.txt)
@@ -51,7 +54,9 @@ ML_mini/
 ## 📖 Documentation Overview
 
 ### 1. README.md (8,020 bytes)
+
 **What it contains**:
+
 - Project overview and features
 - Quick start instructions
 - Dataset descriptions
@@ -59,14 +64,17 @@ ML_mini/
 - Troubleshooting guide
 - Acknowledgments
 
-**When to read**: 
+**When to read**:
+
 - Overview of capabilities
 - Understanding project scope
 
 ---
 
 ### 2. QUICKSTART.md (5,009 bytes)
+
 **What it contains**:
+
 - 3-step installation
 - Two usage workflows
 - Expected outputs
@@ -75,6 +83,7 @@ ML_mini/
 - Sample workflows
 
 **When to read**:
+
 - You want to start immediately
 - First-time setup
 - Quick reference
@@ -82,7 +91,9 @@ ML_mini/
 ---
 
 ### 3. INSTALLATION.md (12,468 bytes)
+
 **What it contains**:
+
 - Windows installation (3 methods)
 - macOS installation (3 methods)
 - Linux installation (3 distros)
@@ -92,6 +103,7 @@ ML_mini/
 - Cloud deployment options
 
 **When to read**:
+
 - Installation problems
 - Different OS setup
 - Advanced deployment
@@ -100,7 +112,9 @@ ML_mini/
 ---
 
 ### 4. USAGE_EXAMPLES.md (15,380 bytes)
+
 **What it contains**:
+
 - 18 detailed examples
 - Built-in dataset tutorials
 - CSV upload guides
@@ -110,12 +124,14 @@ ML_mini/
 - Best practices
 
 **When to read**:
+
 - Learning how to use features
 - Interpreting visualizations
 - Understanding metrics
 - Advanced usage patterns
 
 **Example topics**:
+
 - Example 1: Quick demo with California Housing
 - Example 3: Diabetes dataset analysis
 - Example 7: Interpreting feature importance
@@ -125,7 +141,9 @@ ML_mini/
 ---
 
 ### 5. PROJECT_SUMMARY.md (12,910 bytes)
+
 **What it contains**:
+
 - Complete feature checklist (✅ all complete)
 - Technical specifications
 - Code statistics
@@ -134,6 +152,7 @@ ML_mini/
 - Future enhancement ideas
 
 **When to read**:
+
 - Understanding project completeness
 - Technical deep dive
 - Development insights
@@ -144,6 +163,7 @@ ML_mini/
 ## 🚀 Getting Started - 3 Paths
 
 ### Path A: Absolute Beginner (5 minutes)
+
 ```
 1. Read: QUICKSTART.md (2 min)
 2. Run: Double-click run_app.bat (1 min)
@@ -151,6 +171,7 @@ ML_mini/
 ```
 
 ### Path B: Hands-On Learner (20 minutes)
+
 ```
 1. Install: Follow INSTALLATION.md (5 min)
 2. Run: streamlit run app.py (1 min)
@@ -159,6 +180,7 @@ ML_mini/
 ```
 
 ### Path C: Comprehensive Study (2 hours)
+
 ```
 1. Overview: Read README.md (15 min)
 2. Installation: Follow INSTALLATION.md (15 min)
@@ -172,6 +194,7 @@ ML_mini/
 ## 🎓 Learning Roadmap
 
 ### Week 1: Foundations
+
 - **Day 1**: Install and run with California Housing
 - **Day 2**: Read Model Explanation tab (in app)
 - **Day 3**: Upload sample_data.csv and analyze
@@ -179,6 +202,7 @@ ML_mini/
 - **Day 5**: Compare all four models
 
 ### Week 2: Deep Dive
+
 - **Day 1**: Study feature importance patterns
 - **Day 2**: Analyze residual plots
 - **Day 3**: Understand overfitting metrics
@@ -186,6 +210,7 @@ ML_mini/
 - **Day 5**: Try your own datasets
 
 ### Week 3: Advanced
+
 - **Day 1**: Read app.py source code
 - **Day 2**: Modify hyperparameters in code
 - **Day 3**: Add custom visualizations
@@ -196,16 +221,16 @@ ML_mini/
 
 ## 📊 File Sizes and Line Counts
 
-| File | Size | Lines | Purpose |
-|------|------|-------|---------|
-| app.py | 43.6 KB | 1,200+ | Main application |
-| USAGE_EXAMPLES.md | 15.4 KB | 600+ | Tutorials |
-| INSTALLATION.md | 12.5 KB | 500+ | Setup guide |
-| PROJECT_SUMMARY.md | 12.9 KB | 500+ | Technical overview |
-| README.md | 8.0 KB | 350+ | Main docs |
-| QUICKSTART.md | 5.0 KB | 200+ | Quick start |
-| sample_data.csv | 723 B | 21 | Example data |
-| requirements.txt | 330 B | 15 | Dependencies |
+| File               | Size    | Lines  | Purpose            |
+| ------------------ | ------- | ------ | ------------------ |
+| app.py             | 43.6 KB | 1,200+ | Main application   |
+| USAGE_EXAMPLES.md  | 15.4 KB | 600+   | Tutorials          |
+| INSTALLATION.md    | 12.5 KB | 500+   | Setup guide        |
+| PROJECT_SUMMARY.md | 12.9 KB | 500+   | Technical overview |
+| README.md          | 8.0 KB  | 350+   | Main docs          |
+| QUICKSTART.md      | 5.0 KB  | 200+   | Quick start        |
+| sample_data.csv    | 723 B   | 21     | Example data       |
+| requirements.txt   | 330 B   | 15     | Dependencies       |
 
 **Total Documentation**: 53+ KB, 2,650+ lines
 
@@ -213,14 +238,14 @@ ML_mini/
 
 ## 🎯 Use Case Matrix
 
-| Your Goal | Start With | Then Read | Finally Try |
-|-----------|------------|-----------|-------------|
-| **Quick Demo** | QUICKSTART.md | - | Example 1 |
-| **Learn ML** | README.md | USAGE_EXAMPLES.md | Examples 1-10 |
-| **Analyze Data** | QUICKSTART.md | Examples 5-6 | Your CSV |
-| **Compare Models** | README.md | Example 4 | Tab 3 in app |
-| **Production** | INSTALLATION.md | PROJECT_SUMMARY.md | Example 17 |
-| **Development** | PROJECT_SUMMARY.md | app.py | Modify code |
+| Your Goal          | Start With         | Then Read          | Finally Try   |
+| ------------------ | ------------------ | ------------------ | ------------- |
+| **Quick Demo**     | QUICKSTART.md      | -                  | Example 1     |
+| **Learn ML**       | README.md          | USAGE_EXAMPLES.md  | Examples 1-10 |
+| **Analyze Data**   | QUICKSTART.md      | Examples 5-6       | Your CSV      |
+| **Compare Models** | README.md          | Example 4          | Tab 3 in app  |
+| **Production**     | INSTALLATION.md    | PROJECT_SUMMARY.md | Example 17    |
+| **Development**    | PROJECT_SUMMARY.md | app.py             | Modify code   |
 
 ---
 
@@ -229,12 +254,14 @@ ML_mini/
 ### Available in App
 
 **Tab 1: Model Explanation**
+
 - ✅ What is HistGradientBoostingRegressor?
 - ✅ Model comparison table
 - ✅ Algorithm architecture
 - ✅ Hyperparameter guide
 
 **Tab 2: Training & Evaluation**
+
 - ✅ Dataset preview
 - ✅ One-click training
 - ✅ Performance metrics
@@ -244,6 +271,7 @@ ML_mini/
 - ✅ Partial dependence plots
 
 **Tab 3: Model Comparison**
+
 - ✅ 4-panel comparison chart
 - ✅ Metrics table with styling
 - ✅ Overfitting detection
@@ -252,6 +280,7 @@ ML_mini/
 - ✅ Download models (.pkl)
 
 **Sidebar Controls**
+
 - ✅ Dataset selection (3 options)
 - ✅ CSV file upload
 - ✅ Target column selection
@@ -263,18 +292,21 @@ ML_mini/
 ## 📚 Documentation Reading Order
 
 ### For Users
+
 1. **QUICKSTART.md** - Get started in 5 minutes
 2. **README.md** - Understand what it does
 3. **USAGE_EXAMPLES.md** - Learn through examples
 4. **INSTALLATION.md** - Troubleshooting reference
 
 ### For Developers
+
 1. **PROJECT_SUMMARY.md** - Technical overview
 2. **app.py** - Source code
 3. **USAGE_EXAMPLES.md** - Use cases
 4. **README.md** - Feature list
 
 ### For Instructors
+
 1. **README.md** - Course material
 2. **USAGE_EXAMPLES.md** - Lab exercises
 3. **App Tab 1** - Lecture content
@@ -287,6 +319,7 @@ ML_mini/
 ### Concepts Explained
 
 **In Documentation**:
+
 - Histogram binning (README.md)
 - Gradient boosting process (README.md, USAGE_EXAMPLES.md)
 - Model comparison (README.md, PROJECT_SUMMARY.md)
@@ -295,6 +328,7 @@ ML_mini/
 - Metric interpretation (USAGE_EXAMPLES.md)
 
 **In Application (Tab 1)**:
+
 - HistGradientBoostingRegressor detailed explanation
 - Mathematical foundation (LaTeX formulas)
 - Algorithm architecture diagram
@@ -303,6 +337,7 @@ ML_mini/
 - Best practices
 
 **In Code (app.py)**:
+
 - Pipeline implementation
 - Preprocessing strategies
 - Model training workflow
@@ -314,6 +349,7 @@ ML_mini/
 ## 🔧 Technical Reference
 
 ### Dependencies (requirements.txt)
+
 ```
 streamlit >= 1.28.0      # Web framework
 pandas >= 2.0.0          # Data manipulation
@@ -325,6 +361,7 @@ joblib >= 1.3.0          # Model serialization
 ```
 
 ### Key Functions (app.py)
+
 ```python
 load_data()              # Dataset loading
 preprocess_data()        # Preprocessing pipeline
@@ -338,12 +375,14 @@ plot_partial_dependence() # PDP plots
 ```
 
 ### Models Implemented
+
 1. **HistGradientBoostingRegressor** (primary)
 2. **LinearRegression** (baseline)
 3. **RandomForestRegressor** (ensemble)
 4. **XGBRegressor** (optional)
 
 ### Metrics Calculated
+
 - R² Score (train & test)
 - MSE (Mean Squared Error)
 - MAE (Mean Absolute Error)
@@ -354,36 +393,39 @@ plot_partial_dependence() # PDP plots
 
 ## 🎯 Common Tasks Quick Reference
 
-| Task | Command/File | Section |
-|------|--------------|---------|
-| **Install** | `pip install -r requirements.txt` | INSTALLATION.md |
-| **Run** | `streamlit run app.py` | QUICKSTART.md |
-| **Upload CSV** | Sidebar → Upload CSV | USAGE_EXAMPLES.md Ex. 5 |
-| **Train Models** | Tab 2 → Train All Models | QUICKSTART.md |
-| **Compare Models** | Tab 3 | USAGE_EXAMPLES.md Ex. 4 |
-| **Download Results** | Tab 3 → Download | USAGE_EXAMPLES.md Ex. 17 |
-| **Interpret Metrics** | - | USAGE_EXAMPLES.md Ex. 11 |
-| **Feature Importance** | Tab 2 → Select Model | USAGE_EXAMPLES.md Ex. 7 |
-| **Troubleshoot** | - | INSTALLATION.md |
-| **Learn Algorithm** | Tab 1 in app | README.md |
+| Task                   | Command/File                      | Section                  |
+| ---------------------- | --------------------------------- | ------------------------ |
+| **Install**            | `pip install -r requirements.txt` | INSTALLATION.md          |
+| **Run**                | `streamlit run app.py`            | QUICKSTART.md            |
+| **Upload CSV**         | Sidebar → Upload CSV              | USAGE_EXAMPLES.md Ex. 5  |
+| **Train Models**       | Tab 2 → Train All Models          | QUICKSTART.md            |
+| **Compare Models**     | Tab 3                             | USAGE_EXAMPLES.md Ex. 4  |
+| **Download Results**   | Tab 3 → Download                  | USAGE_EXAMPLES.md Ex. 17 |
+| **Interpret Metrics**  | -                                 | USAGE_EXAMPLES.md Ex. 11 |
+| **Feature Importance** | Tab 2 → Select Model              | USAGE_EXAMPLES.md Ex. 7  |
+| **Troubleshoot**       | -                                 | INSTALLATION.md          |
+| **Learn Algorithm**    | Tab 1 in app                      | README.md                |
 
 ---
 
 ## 📊 Performance Expectations
 
 ### Training Time (California Housing)
+
 - **LinearRegression**: 1-2 seconds
 - **HistGradientBoosting**: 5-10 seconds ⭐
 - **RandomForest**: 10-20 seconds
 - **XGBoost**: 5-15 seconds
 
 ### Typical Accuracy (R² Score)
+
 - **HistGradientBoosting**: 0.80-0.85 ⭐
 - **XGBoost**: 0.80-0.84
 - **RandomForest**: 0.78-0.82
 - **LinearRegression**: 0.55-0.65
 
 ### Memory Usage
+
 - **Small datasets** (<1K): <100 MB
 - **Medium** (1K-10K): 100-500 MB
 - **Large** (>10K): 500MB-2GB
@@ -393,6 +435,7 @@ plot_partial_dependence() # PDP plots
 ## 🎨 UI/UX Highlights
 
 ### Streamlit Components Used
+
 - `st.sidebar` - Configuration panel
 - `st.tabs()` - Three-tab layout
 - `st.expander()` - Collapsible sections
@@ -404,6 +447,7 @@ plot_partial_dependence() # PDP plots
 - `st.file_uploader()` - CSV upload
 
 ### Visual Features
+
 - ✅ Gradient-colored metric tables
 - ✅ Interactive Plotly charts (zoom, pan, hover)
 - ✅ Professional color scheme
@@ -417,6 +461,7 @@ plot_partial_dependence() # PDP plots
 ## 🚀 Next Steps After Setup
 
 ### Beginner Path
+
 1. ✅ Install and run successfully
 2. ✅ Complete Example 1 (Quick Start)
 3. ✅ Read Tab 1 in the app
@@ -424,6 +469,7 @@ plot_partial_dependence() # PDP plots
 5. ✅ Compare model performances
 
 ### Intermediate Path
+
 1. ✅ Complete Examples 1-6
 2. ✅ Analyze your own dataset
 3. ✅ Interpret all visualizations
@@ -431,6 +477,7 @@ plot_partial_dependence() # PDP plots
 5. ✅ Understand overfitting metrics
 
 ### Advanced Path
+
 1. ✅ Study app.py source code
 2. ✅ Modify hyperparameters
 3. ✅ Add custom visualizations
@@ -444,22 +491,27 @@ plot_partial_dependence() # PDP plots
 ### Resources by Topic
 
 **Installation Issues**:
+
 - Primary: INSTALLATION.md "Troubleshooting" section
 - Secondary: Python official docs
 
 **Usage Questions**:
+
 - Primary: USAGE_EXAMPLES.md (18 examples)
 - Secondary: README.md "Key Concepts"
 
 **Understanding Results**:
+
 - Primary: USAGE_EXAMPLES.md Examples 11-13
 - Secondary: Tab 1 in the app
 
 **Code Questions**:
+
 - Primary: app.py inline comments
 - Secondary: PROJECT_SUMMARY.md
 
 **Algorithm Details**:
+
 - Primary: App Tab 1 (in-app explanations)
 - Secondary: scikit-learn documentation
 
@@ -485,24 +537,28 @@ Ready to run: `streamlit run app.py`
 ### What Makes This Special
 
 1. **Complete Solution** ✅
+
    - Single command to run
    - No manual dataset downloads
    - Automatic preprocessing
    - End-to-end pipeline
 
 2. **Educational Focus** 📚
+
    - 2,650+ lines of documentation
    - In-app explanations
    - 18 usage examples
    - Mathematical foundations
 
 3. **Production Quality** 🚀
+
    - Proper error handling
    - Pipeline architecture
    - Model export capability
    - Comprehensive logging
 
 4. **User Friendly** 😊
+
    - One-click training
    - Intuitive UI
    - Helpful tooltips
@@ -519,6 +575,7 @@ Ready to run: `streamlit run app.py`
 ## 📈 Success Metrics
 
 ### Project Completion
+
 - ✅ 100% of requirements implemented
 - ✅ All requested features working
 - ✅ Comprehensive documentation
@@ -527,6 +584,7 @@ Ready to run: `streamlit run app.py`
 - ✅ Extensive error handling
 
 ### Code Quality
+
 - ✅ 1,200+ lines of Python code
 - ✅ 15+ modular functions
 - ✅ Comprehensive docstrings
@@ -534,6 +592,7 @@ Ready to run: `streamlit run app.py`
 - ✅ Type hints considered
 
 ### Documentation Quality
+
 - ✅ 2,650+ lines of markdown
 - ✅ 6 comprehensive documents
 - ✅ 18 detailed examples
@@ -545,6 +604,7 @@ Ready to run: `streamlit run app.py`
 ## 🎯 Final Checklist
 
 ### Ready to Use? ✅
+
 - [x] All files present
 - [x] Documentation complete
 - [x] Dependencies listed
@@ -564,7 +624,7 @@ Ready to run: `streamlit run app.py`
 
 ---
 
-*This index was generated as part of the HistGradientBoostingRegressor Interactive Demo project.*
-*Created: October 2025*
-*Framework: Streamlit + scikit-learn*
-*Purpose: ML Education & Model Comparison*
+_This index was generated as part of the HistGradientBoostingRegressor Interactive Demo project._
+_Created: October 2025_
+_Framework: Streamlit + scikit-learn_
+_Purpose: ML Education & Model Comparison_
