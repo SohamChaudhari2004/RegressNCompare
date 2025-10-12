@@ -3,12 +3,15 @@
 ## Issues Fixed
 
 ### ✅ **Issue 1: Date Column as Target**
+
 **Error**: `ValueError: could not convert string to float: '2013-02-04'`
 
 **Root Cause**: User was able to select a date column (string) as the target variable, but regression models require numeric targets.
 
 **Solution Applied**:
+
 1. **Automatic Date Detection & Conversion** in `load_data()`:
+
    - Detects date/datetime columns automatically
    - Converts them to numeric features: `year`, `month`, `day`, `dayofweek`
    - Example: `date` column → `date_year`, `date_month`, `date_day`, `date_dayofweek`
@@ -20,6 +23,7 @@
    - Shows helpful error if no numeric columns exist
 
 **Code Changes**:
+
 ```python
 # In load_data() function:
 for col in df.columns:
@@ -47,16 +51,20 @@ target_col = st.sidebar.selectbox(
 ---
 
 ### ✅ **Issue 2: Missing Values in Target Column**
+
 **Error**: `ValueError: Input y contains NaN.`
 
 **Root Cause**: Target column contained missing (NaN) values, which regression models cannot handle.
 
 **Solution Applied**:
+
 1. **Automatic NaN Detection** in `preprocess_data()`:
+
    - Checks for missing values in target column
    - Shows warning message with count of missing values
 
 2. **Automatic Row Removal**:
+
    - Removes rows where target is NaN
    - Updates both X (features) and y (target)
    - Shows info message with new dataset size
@@ -66,6 +74,7 @@ target_col = st.sidebar.selectbox(
    - Raises clear error if target is non-numeric
 
 **Code Changes**:
+
 ```python
 # In preprocess_data() function:
 # Validate target column
@@ -85,14 +94,17 @@ if missing_target_count > 0:
 ---
 
 ### ✅ **Issue 3: Streamlit Deprecation Warning**
+
 **Warning**: `Please replace use_container_width with width. use_container_width will be removed after 2025-12-31.`
 
 **Root Cause**: Using deprecated `use_container_width` parameter in `st.dataframe()`.
 
 **Solution Applied**:
+
 - Replaced all 3 instances of `use_container_width=True` with `width='stretch'`
 
 **Code Changes**:
+
 ```python
 # Before:
 st.dataframe(df.head(10), use_container_width=True)
@@ -106,12 +118,15 @@ st.dataframe(metrics_df, width='stretch')
 ---
 
 ### ✅ **Issue 4: Ridge Model Missing from Selection**
+
 **Problem**: Ridge regression was added but not included in model selection options.
 
 **Solution Applied**:
+
 - Added "Ridge" to `model_options` list in sidebar
 
 **Code Changes**:
+
 ```python
 # Before:
 model_options = ["HistGradientBoosting", "LinearRegression", "RandomForest"]
@@ -125,13 +140,16 @@ model_options = ["HistGradientBoosting", "LinearRegression", "Ridge", "RandomFor
 ## 🎯 New Features Added
 
 ### 1. **Target Column Statistics** (Sidebar)
+
 When you select a target column, you now see:
+
 - Minimum value
 - Maximum value
 - Mean value
 - Missing value count & percentage
 
 Example:
+
 ```
 Target: price
 - Min: 5000.00
@@ -141,14 +159,18 @@ Target: price
 ```
 
 ### 2. **Date Feature Engineering**
+
 Automatically converts date columns to useful numeric features:
+
 - `year` - Full year (e.g., 2023)
 - `month` - Month number (1-12)
 - `day` - Day of month (1-31)
 - `dayofweek` - Day of week (0=Monday, 6=Sunday)
 
 ### 3. **Better Error Messages**
+
 Clear, actionable error messages:
+
 - "No numeric columns found" → Upload different dataset
 - "Target contains only NaN" → Select different column
 - "Target must be numeric" → Auto-prevented now
@@ -160,6 +182,7 @@ Clear, actionable error messages:
 Test your custom dataset upload with these scenarios:
 
 ### ✅ **Valid Dataset**
+
 - [x] CSV with numeric target → ✅ Works
 - [x] CSV with mixed numeric/categorical features → ✅ Works
 - [x] CSV with missing values in features → ✅ Handles via imputation
@@ -167,6 +190,7 @@ Test your custom dataset upload with these scenarios:
 - [x] CSV with date columns → ✅ Converts to numeric features
 
 ### ⚠️ **Invalid Dataset (Now Handled)**
+
 - [x] CSV with no numeric columns → ❌ Shows clear error
 - [x] CSV with all NaN in target → ❌ Shows clear error
 - [x] CSV with date as target → ✅ Prevented (only numeric columns shown)
@@ -176,7 +200,9 @@ Test your custom dataset upload with these scenarios:
 ## 🚀 How to Test
 
 ### Test Case 1: Dataset with Dates
+
 Create a CSV file `test_dates.csv`:
+
 ```csv
 date,feature1,feature2,target
 2023-01-01,10,20,100
@@ -185,6 +211,7 @@ date,feature1,feature2,target
 ```
 
 **Expected Behavior**:
+
 1. Date column automatically converted to: `date_year`, `date_month`, `date_day`, `date_dayofweek`
 2. Only numeric columns (`feature1`, `feature2`, `target`, `date_year`, etc.) shown in target dropdown
 3. App shows: "✅ Converted date column 'date' to numeric features"
@@ -192,7 +219,9 @@ date,feature1,feature2,target
 ---
 
 ### Test Case 2: Dataset with Missing Target Values
+
 Create a CSV file `test_missing.csv`:
+
 ```csv
 feature1,feature2,target
 10,20,100
@@ -202,6 +231,7 @@ feature1,feature2,target
 ```
 
 **Expected Behavior**:
+
 1. App shows: "⚠️ Found 2 missing values in target column. Removing these rows..."
 2. App shows: "✅ Dataset size after removing missing targets: 2 samples"
 3. Training proceeds with 2 valid samples
@@ -209,7 +239,9 @@ feature1,feature2,target
 ---
 
 ### Test Case 3: Dataset with Only Non-Numeric Columns
+
 Create a CSV file `test_text.csv`:
+
 ```csv
 name,category,description
 John,A,Good
@@ -218,6 +250,7 @@ Bob,C,Best
 ```
 
 **Expected Behavior**:
+
 1. App shows: "❌ No numeric columns found in the dataset."
 2. Training is prevented
 3. Clear instruction to upload different dataset
@@ -247,17 +280,20 @@ Training - Clean data with valid target
 ### Key Functions Modified:
 
 1. **`load_data()`**
+
    - Added date detection and conversion
    - Converts object columns that are dates
    - Creates 4 numeric features per date column
 
 2. **`preprocess_data()`**
+
    - Added target validation (numeric check)
    - Added missing value handling for target
    - Shows warnings and info messages
    - Removes invalid rows before processing
 
 3. **`detect_column_types()`**
+
    - Added datetime column skipping
    - Prevents already-converted dates from being processed
 
@@ -288,6 +324,7 @@ All critical bugs are now fixed! Your app can now handle:
 ✅ All 5 models available (including Ridge)
 
 **Next Steps**:
+
 1. Run: `streamlit run app.py`
 2. Upload your custom dataset
 3. Select numeric target column
