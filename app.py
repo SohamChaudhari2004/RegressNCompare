@@ -22,7 +22,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import HistGradientBoostingRegressor, RandomForestRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.inspection import PartialDependenceDisplay, partial_dependence
 
@@ -178,38 +178,66 @@ def build_pipelines(preprocessor):
         Dictionary of model pipelines
     """
     pipelines = {
+        # HistGradientBoosting - IMPROVED with regularization and early stopping
         'HistGradientBoosting': Pipeline([
             ('preprocessor', preprocessor),
             ('model', HistGradientBoostingRegressor(
                 max_iter=100,
-                learning_rate=0.1,
-                max_depth=5,
+                learning_rate=0.05,        # Reduced from 0.1 for less overfitting
+                max_depth=4,               # Reduced from 5 for simpler trees
+                min_samples_leaf=30,       # Increased from 20 for more regularization
+                l2_regularization=1.0,     # Added L2 penalty
+                max_bins=200,              # Reduced from 255 for less granularity
+                early_stopping=True,       # Stop when validation doesn't improve
+                n_iter_no_change=10,       # Stop after 10 iterations without improvement
+                validation_fraction=0.1,   # Use 10% of training for validation
                 random_state=42
             ))
         ]),
+        # Linear Regression - Simple baseline model
         'LinearRegression': Pipeline([
             ('preprocessor', preprocessor),
             ('model', LinearRegression())
         ]),
+        # Ridge Regression - Better than LinearRegression with L2 regularization
+        'Ridge': Pipeline([
+            ('preprocessor', preprocessor),
+            ('model', Ridge(
+                alpha=10.0,                # L2 regularization strength
+                random_state=42
+            ))
+        ]),
+        # RandomForest - IMPROVED with strong regularization
         'RandomForest': Pipeline([
             ('preprocessor', preprocessor),
             ('model', RandomForestRegressor(
                 n_estimators=100,
-                max_depth=10,
+                max_depth=6,               # Reduced from 10 to prevent overfitting
+                min_samples_split=20,      # Increased from 2 for more conservative splits
+                min_samples_leaf=10,       # Increased from 1 for larger leaf nodes
+                max_features='sqrt',       # Changed from 'auto' to use fewer features
+                bootstrap=True,
+                oob_score=True,            # Out-of-bag score for validation
                 random_state=42,
                 n_jobs=-1
             ))
         ])
     }
     
-    # Add XGBoost if available
+    # Add XGBoost if available - IMPROVED with massive regularization
     if XGBOOST_AVAILABLE:
         pipelines['XGBoost'] = Pipeline([
             ('preprocessor', preprocessor),
             ('model', XGBRegressor(
                 n_estimators=100,
-                learning_rate=0.1,
-                max_depth=5,
+                learning_rate=0.03,        # Much slower learning (reduced from 0.1)
+                max_depth=3,               # Shallower trees (reduced from 5)
+                min_child_weight=5,        # More regularization (increased from 1)
+                subsample=0.7,             # Use 70% of samples per tree
+                colsample_bytree=0.7,      # Use 70% of features per tree
+                gamma=0.1,                 # Minimum loss reduction for split
+                reg_alpha=0.5,             # L1 regularization
+                reg_lambda=1.0,            # L2 regularization
                 random_state=42
             ))
         ])
