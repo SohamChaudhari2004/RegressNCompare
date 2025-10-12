@@ -85,6 +85,25 @@ def load_data(dataset_choice, uploaded_file=None):
         
     elif dataset_choice == "Upload CSV" and uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
+        
+        # Convert date columns to numeric features
+        for col in df.columns:
+            if df[col].dtype == 'object':
+                # Try to parse as datetime
+                try:
+                    df[col] = pd.to_datetime(df[col], errors='coerce')
+                    if df[col].notna().any():
+                        # Convert to multiple numeric features
+                        df[f'{col}_year'] = df[col].dt.year
+                        df[f'{col}_month'] = df[col].dt.month
+                        df[f'{col}_day'] = df[col].dt.day
+                        df[f'{col}_dayofweek'] = df[col].dt.dayofweek
+                        # Drop original date column
+                        df = df.drop(columns=[col])
+                        st.info(f"✅ Converted date column '{col}' to numeric features (year, month, day, dayofweek)")
+                except:
+                    pass
+        
         target_col = None  # Will be selected by user
         
     else:
@@ -114,6 +133,10 @@ def detect_column_types(df, target_col):
     categorical_cols = []
     
     for col in feature_cols:
+        # Skip date/datetime columns (should have been converted already)
+        if pd.api.types.is_datetime64_any_dtype(df[col]):
+            continue
+            
         if df[col].dtype in ['int64', 'float64']:
             # Check if it's actually categorical (few unique values)
             if df[col].nunique() < 10 and df[col].dtype == 'int64':
@@ -137,9 +160,27 @@ def preprocess_data(df, target_col):
     Returns:
         X, y, preprocessor, numerical_cols, categorical_cols
     """
+    # Validate target column
+    if target_col not in df.columns:
+        raise ValueError(f"Target column '{target_col}' not found in dataset")
+    
+    # Check if target is numeric
+    if not pd.api.types.is_numeric_dtype(df[target_col]):
+        raise ValueError(f"Target column '{target_col}' must be numeric. Found type: {df[target_col].dtype}")
+    
     # Separate features and target
     X = df.drop(columns=[target_col])
     y = df[target_col]
+    
+    # Handle missing values in target
+    missing_target_count = y.isnull().sum()
+    if missing_target_count > 0:
+        st.warning(f"⚠️ Found {missing_target_count} missing values in target column. Removing these rows...")
+        # Remove rows with missing target
+        valid_indices = y.notna()
+        X = X[valid_indices]
+        y = y[valid_indices]
+        st.info(f"✅ Dataset size after removing missing targets: {len(X)} samples")
     
     # Detect column types
     numerical_cols, categorical_cols = detect_column_types(df, target_col)
@@ -582,11 +623,32 @@ def main():
     
     # Target column selection
     if dataset_choice == "Upload CSV":
+        # Filter to only show numeric columns for target selection
+        numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
+        
+        if not numeric_columns:
+            st.error("❌ No numeric columns found in the dataset. The target column must be numeric for regression.")
+            return
+        
         target_col = st.sidebar.selectbox(
-            "Select Target Column",
-            df.columns.tolist(),
-            help="Choose the column you want to predict"
+            "Select Target Column (must be numeric)",
+            numeric_columns,
+            help="Choose the numeric column you want to predict"
         )
+        
+        # Validate selected target
+        if df[target_col].isnull().all():
+            st.error(f"❌ Target column '{target_col}' contains only missing values. Please select a different column.")
+            return
+        
+        # Show target column statistics
+        st.sidebar.info(f"""
+        **Target: {target_col}**
+        - Min: {df[target_col].min():.2f}
+        - Max: {df[target_col].max():.2f}
+        - Mean: {df[target_col].mean():.2f}
+        - Missing: {df[target_col].isnull().sum()} ({df[target_col].isnull().sum()/len(df)*100:.1f}%)
+        """)
     else:
         target_col = default_target
         st.sidebar.info(f"Target column: **{target_col}**")
@@ -603,7 +665,7 @@ def main():
     
     # Model selection (optional)
     st.sidebar.subheader("Model Selection")
-    model_options = ["HistGradientBoosting", "LinearRegression", "RandomForest"]
+    model_options = ["HistGradientBoosting", "LinearRegression", "Ridge", "RandomForest"]
     if XGBOOST_AVAILABLE:
         model_options.append("XGBoost")
     
@@ -807,7 +869,7 @@ def main():
             st.metric("Missing Values", df.isnull().sum().sum())
         
         with st.expander("View Data Sample"):
-            st.dataframe(df.head(10), use_container_width=True)
+            st.dataframe(df.head(10), width='stretch')
         
         # Data preprocessing
         st.subheader("🔧 Data Preprocessing")
@@ -886,7 +948,7 @@ def main():
                 })
             
             metrics_df = pd.DataFrame(metrics_data)
-            st.dataframe(metrics_df, use_container_width=True)
+            st.dataframe(metrics_df, width='stretch')
             
             # Highlight best model
             best_r2_model = max(results.items(), key=lambda x: x[1]['metrics']['R² Score (Test)'])
@@ -1030,7 +1092,7 @@ def main():
                 'Overfit Gap (R²)': '{:.4f}'
             }).background_gradient(subset=['R² Score (Test)'], cmap='RdYlGn')
             .background_gradient(subset=['RMSE (Test)', 'MAE (Test)'], cmap='RdYlGn_r'),
-            use_container_width=True
+            width='stretch'
         )
         
         # Insights
