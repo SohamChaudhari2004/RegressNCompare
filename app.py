@@ -15,7 +15,7 @@ import seaborn as sns
 from matplotlib.figure import Figure
 
 # Scikit-learn imports
-from sklearn.datasets import fetch_california_housing, load_diabetes
+from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
@@ -73,12 +73,7 @@ def load_data(dataset_choice, uploaded_file=None):
     Returns:
         DataFrame with features and target
     """
-    if dataset_choice == "California Housing":
-        data = fetch_california_housing(as_frame=True)
-        df = data.frame
-        target_col = 'MedHouseVal'
-        
-    elif dataset_choice == "Diabetes":
+    if dataset_choice == "Diabetes":
         data = load_diabetes(as_frame=True)
         df = data.frame
         target_col = 'target'
@@ -595,7 +590,7 @@ def main():
     st.sidebar.header("⚙️ Configuration")
     
     # Dataset selection
-    dataset_options = ["California Housing", "Diabetes", "Upload CSV"]
+    dataset_options = ["Diabetes", "Upload CSV"]
     dataset_choice = st.sidebar.selectbox(
         "Select Dataset",
         dataset_options,
